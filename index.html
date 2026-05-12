@@ -56,7 +56,7 @@
                     <p class="hero-desc">Введіть свою адресу або оберіть район, щоб побачити час доставки та відстань до найближчих закладів!</p>
                     
                     <div class="search-box mb-4" style="margin-bottom: 16px;">
-                        <input type="text" id="hero-address-input" placeholder="Введіть вашу вулицю, напр. Шахтарський...">
+                        <input type="text" id="hero-address-input" placeholder="Введіть вашу вулицю...">
                         <button class="btn btn-primary" id="hero-search-btn">Знайти поруч</button>
                     </div>
                     
@@ -77,7 +77,7 @@
             </div>
             <div class="grid promo-grid">
                 <div class="promo-card" onclick="openPromo('ToSim')">
-                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Burger" class="promo-bg">
+                    <img src="images/Бургер-Сети.jpg" alt="Burger" class="promo-bg">
                     <div class="promo-overlay">
                         <div class="promo-badge">-40%</div>
                         <div class="promo-restaurant">ToSim</div>
@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <div class="promo-card" onclick="openPromo('Baza')">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Meat" class="promo-bg">
+                    <img src="images/М'ясні Комбо.jpg" alt="Meat" class="promo-bg">
                     <div class="promo-overlay">
                         <div class="promo-badge">-20%</div>
                         <div class="promo-restaurant">Baza</div>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div class="promo-card" onclick="openPromo('Osama Sushi')">
-                    <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80" alt="Sushi" class="promo-bg">
+                    <img src="images/Кілограмові Сети.jpg" alt="Sushi" class="promo-bg">
                     <div class="promo-overlay">
                         <div class="promo-badge">-17%</div>
                         <div class="promo-restaurant">Osama Sushi</div>
@@ -108,34 +108,34 @@
             <h2 class="section-title" style="margin-bottom: 32px;">Популярні категорії 🤩</h2>
             <div class="grid category-grid" id="category-filter-grid">
                 <div class="category-card" data-cat="Burger">
-                    <div class="category-img-wrap"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=200&q=80" alt="Фастфуд"></div>
+                    <div class="category-img-wrap"><img src="images/Бургери та Фастфуд.jpg" alt="Фастфуд"></div>
                     <div class="category-name">Бургери та Фастфуд</div>
                     <div class="category-count">3 Restaurants</div>
                 </div>
                 <div class="category-card" data-cat="Sushi">
-                    <div class="category-img-wrap"><img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=200&q=80" alt="Суші"></div>
+                    <div class="category-img-wrap"><img src="images/Суші.jpg" alt="Суші"></div>
                     <div class="category-name">Суші</div>
                     <div class="category-count">2 Restaurants</div>
                 </div>
                 <div class="category-card" data-cat="Pizza">
-                    <div class="category-img-wrap"><img src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?auto=format&fit=crop&w=200&q=80" alt="Піца"></div>
+                    <div class="category-img-wrap"><img src="images/Піца.jpg" alt="Піца"></div>
                     <div class="category-name">Піца</div>
                     <div class="category-count">3 Restaurants</div>
                 </div>
                 <div class="category-card" data-cat="Grocery">
-                    <div class="category-img-wrap"><img src="https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&w=200&q=80" alt="Продукти"></div>
+                    <div class="category-img-wrap"><img src="images/Продукти.jpg" alt="Продукти"></div>
                     <div class="category-name">Продукти</div>
                     <div class="category-count">1 Market</div>
                 </div>
                 <div class="category-card" data-cat="Dessert">
-                    <div class="category-img-wrap"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=200&q=80" alt="Десерти"></div>
+                    <div class="category-img-wrap"><img src="images/Десерти.jpg" alt="Десерти"></div>
                     <div class="category-name">Десерти</div>
                     <div class="category-count">4 Restaurants</div>
                 </div>
                 <div class="category-card" onclick="document.getElementById('product-search-input').value=''; renderMenu(products.filter(p => !p.isPromo)); document.getElementById('menu-title').innerText='Всі страви'; document.getElementById('menu').scrollIntoView({behavior: 'smooth', block: 'start'});">
                     <div class="category-img-wrap" style="display:flex; align-items:center; justify-content:center; background: var(--bg-gray); font-size: 2rem;">🍽️</div>
                     <div class="category-name">Всі страви</div>
-                    <div class="category-count">65+ Items</div>
+                    <div class="category-count">45+ Items</div>
                 </div>
             </div>
         </section>
@@ -149,7 +149,7 @@
                 <div style="display: flex; gap: 12px; flex-wrap: wrap; width: 100%; max-width: 600px; align-items: center; justify-content: flex-end;">
                     <div class="search-box" style="background: var(--bg-card); flex: 1; min-width: 200px; padding: 12px 20px; margin-bottom: 0;">
                         <span style="color: var(--text-gray); margin-right: 12px; font-size: 1.2rem;">🔍</span>
-                        <input type="text" id="product-search-input" placeholder="Пошук страв (напр. 'огірки')">
+                        <input type="text" id="product-search-input" placeholder="Пошук страв">
                     </div>
                     
                     <div class="custom-select-wrapper">
@@ -224,7 +224,7 @@
             </div>
         </section>
 
-        <!-- Lead Forms REDESIGNED -->
+        <!-- Lead Cards with Photos -->
         <section class="container">
             <div class="grid lead-grid">
                 <div class="lead-card partner">
@@ -553,6 +553,13 @@
                 <input type="text" id="auth-name" placeholder="Ваше ім'я" class="form-input hidden">
                 <input type="tel" id="auth-phone" placeholder="Номер телефону" class="form-input" required>
                 <input type="password" id="auth-pass" placeholder="Пароль" class="form-input" required>
+                
+                <!-- NEW REFERRAL WRAPPER -->
+                <div id="referral-wrap" class="hidden" style="margin-bottom: 16px;">
+                    <label class="text-xs text-gray" style="display: block; margin-bottom: 4px;">Код запрошення (необов'язково)</label>
+                    <input type="text" id="auth-ref-code" placeholder="Наприклад: NOVO-FRIEND-2026" class="form-input" style="margin-bottom: 0;">
+                </div>
+                
                 <button type="submit" class="btn btn-primary w-full mt-4" id="auth-submit-btn" style="margin-top:16px;">Увійти</button>
             </form>
         </div>
@@ -583,7 +590,7 @@
                     <input type="tel" id="prof-phone" placeholder="Номер телефону" class="form-input" required>
                     
                     <h4 class="font-semibold mb-2 mt-4" style="margin-bottom:8px; margin-top:16px;">Збережена адреса доставки</h4>
-                    <input type="text" id="prof-street" placeholder="Вулиця (напр. Шахтарський)" class="form-input">
+                    <input type="text" id="prof-street" placeholder="Вулиця" class="form-input">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                         <input type="text" id="prof-house" placeholder="Будинок" class="form-input">
                         <input type="text" id="prof-apt" placeholder="Квартира" class="form-input">
@@ -605,7 +612,7 @@
         </div>
         <div class="modal-body">
             <h4 class="font-semibold mb-2" style="margin-bottom:8px;">Адреса та контакти</h4>
-            <input type="text" id="checkout-street" placeholder="Вулиця (напр. Шахтарський)" class="form-input" required>
+            <input type="text" id="checkout-street" placeholder="Вулиця" class="form-input" required>
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                 <input type="text" id="checkout-house" placeholder="Будинок *" class="form-input" required>
@@ -674,7 +681,7 @@
     <div class="modal" id="promo-modal" style="max-width: 800px; width: 95%;">
         <div class="modal-header">
             <div>
-                <h3 class="modal-title" id="promo-modal-title">Ексклюзивні Сети</h3>
+                <h3 class="modal-title" id="promo-modal-title">Ексклюзив Сети</h3>
                 <p class="text-sm text-gray">Спеціальні пропозиції, доступні тільки зараз</p>
             </div>
             <button class="close-btn" onclick="closeModal('promo-modal')">×</button>
@@ -706,6 +713,7 @@
         </div>
     </div>
 
+    <!-- --- JAVASCRIPT --- -->
     <script src="script.js"></script>
 </body>
 </html>

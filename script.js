@@ -1,86 +1,87 @@
+/* STREAMING_CHUNK:Initializing mock database and global state variables... */
 // --- 1. MOCK DATABASE AND LOCATIONS ---
-const u = (id) => `https://images.unsplash.com/photo-${id}?w=400&q=80`;
 
+// МАСИВ З УСІМА ТОВАРАМИ
 const products = [
-    // --- PIZZA (15 Items) ---
-    { id: 101, name: "Піца Маргарита", price: 150, category: "Pizza", partner: "IQ Pizza", description: "Класична піца з томатним соусом, сиром моцарела та свіжим базиліком.", img: u('1574071318508-1cdbab80d002') },
-    { id: 102, name: "Піца Пепероні", price: 180, category: "Pizza", partner: "IQ Pizza", description: "Піца з пікантною ковбасою пепероні, сиром моцарела та томатним соусом.", img: u('1628840042765-356cda07504e') },
-    { id: 103, name: "Піца 4 Сири", price: 210, category: "Pizza", partner: "IQ Pizza", description: "Піца на вершковій основі з сирами: моцарела, пармезан, горгонзола, дорблю.", img: u('1513104890138-7c749659a591') },
-    { id: 104, name: "Піца Гавайська", price: 190, category: "Pizza", partner: "IQ Pizza", description: "Піца з курячим філе, соковитими ананасами та сиром моцарела.", img: u('1564936281291-294551497d81') },
-    { id: 105, name: "Піца М'ясна", price: 240, category: "Pizza", partner: "IQ Pizza", description: "Ситна піца з беконом, салямі, шинкою та мисливськими ковбасками.", img: u('1565299624946-b28f40a0ae38') },
-    { id: 106, name: "Піца Баварська", price: 220, category: "Pizza", partner: "IQ Pizza", description: "Піца з мисливськими ковбасками, маринованими огірками та гірчичним соусом.", img: u('1590947132387-155cc02f3212') },
-    { id: 107, name: "Піца Капрічоза", price: 210, category: "Pizza", partner: "Фелічіта", description: "Ситна піца з шинкою, грибами, артишоками, маслинами та моцарелою.", img: u('1534308983496-4f4dccefae0f') },
-    { id: 108, name: "Піца з куркою та грибами", price: 200, category: "Pizza", partner: "IQ Pizza", description: "Класичне поєднання курячого філе, печериць та вершкового соусу.", img: u('1585238342024-78d387f4a707') },
-    { id: 109, name: "Піца Вегетаріанська", price: 170, category: "Pizza", partner: "Фелічіта", description: "Томатний соус, моцарела, перець, кукурудза, помідори чері, маслини.", img: u('1604382355076-af4b0eb60143') },
-    { id: 110, name: "Піца Цезар", price: 230, category: "Pizza", partner: "Фелічіта", description: "Куряче філе, бекон, салат айсберг, пармезан, помідори чері та соус Цезар.", img: u('1571095992776-560ca4a956be') },
-    { id: 111, name: "Піца Маргарита класична", price: 210, category: "Pizza", partner: "Фелічіта", description: "Справжня неаполітанська Маргарита на тонкому тісті з моцарелою буфало.", img: u('1574071318508-1cdbab80d002') },
-    { id: 112, name: "Піца Діабола", price: 230, category: "Pizza", partner: "Фелічіта", description: "Пікантна піца з гострою салямі, перцем чилі та моцарелою.", img: u('1628840042765-356cda07504e') },
-    { id: 113, name: "Піца 4 М'яса", price: 290, category: "Pizza", partner: "Фелічіта", description: "Шинка, салямі, бекон, мисливські ковбаски на томатній основі.", img: u('1565299624946-b28f40a0ae38') },
-    { id: 114, name: "Піца Прошуто", price: 310, category: "Pizza", partner: "Фелічіта", description: "Італійське прошуто, свіжа рукола, пармезан та бальзамічний крем.", img: u('1534308983496-4f4dccefae0f') },
-    { id: 115, name: "Піца Сирна Курка", price: 215, category: "Pizza", partner: "IQ Pizza", description: "Курка, кукурудза, багато сиру та вершковий соус.", img: u('1513104890138-7c749659a591') },
+    // --- АТБ (Grocery) ---
+    { id: 1001, name: "Хліб білий", price: 25, category: "Grocery", partner: "АТБ", description: "Свіжоспечений пшеничний білий хліб", img: "images/Хліб білий.jpg" },
+    { id: 1002, name: "Хліб чорний", price: 28, category: "Grocery", partner: "АТБ", description: "Житній хліб з солодом", img: "images/Хліб чорний.jpg" },
+    { id: 1003, name: "Молоко 2.5%", price: 42, category: "Grocery", partner: "АТБ", description: "Натуральне коров'яче молоко", img: "images/Молоко 2.5.jpg" },
+    { id: 1004, name: "Кефір 2.5%", price: 45, category: "Grocery", partner: "АТБ", description: "Корисний кефір", img: "images/Кефір 2.5.jpg" },
+    { id: 1005, name: "Сметана 20%", price: 55, category: "Grocery", partner: "АТБ", description: "Густа сметана", img: "images/Сметана 20.jpg" },
+    { id: 1006, name: "Сир твердий", price: 120, category: "Grocery", partner: "АТБ", description: "Сир Голландський", img: "images/сир твердий.jpg" },
+    { id: 1007, name: "Яйця (10 шт)", price: 65, category: "Grocery", partner: "АТБ", description: "Яйця курячі С0", img: "images/Яйця (10 шт).jpg" },
+    { id: 1008, name: "Ковбаса варена", price: 140, category: "Grocery", partner: "АТБ", description: "Лікарська ковбаса", img: "images/Ковбаса варена.jpg" },
+    { id: 1009, name: "Куряче філе", price: 180, category: "Grocery", partner: "АТБ", description: "Філе охолоджене 1кг", img: "images/Куряче філе.jpg" },
+    { id: 1010, name: "Картопля", price: 20, category: "Grocery", partner: "АТБ", description: "Картопля 1кг", img: "images/Картопля.jpg" },
+    { id: 1011, name: "Помідори", price: 80, category: "Grocery", partner: "АТБ", description: "Томати 1кг", img: "images/Помідори.jpg" },
+    { id: 1012, name: "Банани", price: 60, category: "Grocery", partner: "АТБ", description: "Еквадор 1кг", img: "images/Банани.jpg" },
+    { id: 1013, name: "Кока-Кола 1.5л", price: 45, category: "Grocery", partner: "АТБ", description: "Напій Coca-Cola", img: "images/Кока-Кола 1.5л.jpg" },
+    
+    // --- IQ Pizza (Pizza & Fastfood) ---
+    { id: 2001, name: "Піца Маргарита", price: 150, category: "Pizza", partner: "IQ Pizza", description: "Томатний соус, моцарела", img: "images/Піца Маргарита.jpg" },
+    { id: 2002, name: "Піца Пепероні", price: 180, category: "Pizza", partner: "IQ Pizza", description: "Пепероні, сир моцарела", img: "images/Піца Пепероні.jpg" },
+    { id: 2003, name: "Піца 4 Сири", price: 210, category: "Pizza", partner: "IQ Pizza", description: "Моцарела, пармезан, горгонзола, дорблю", img: "images/Піца 4 Сири.jpg" },
+    { id: 2004, name: "Піца Гавайська", price: 190, category: "Pizza", partner: "IQ Pizza", description: "Курка, ананас, сир", img: "images/Піца Гавайська.jpg" },
+    { id: 2005, name: "Піца М'ясна", price: 240, category: "Pizza", partner: "IQ Pizza", description: "Бекон, салямі, шинка", img: "images/Піца М'ясна.jpg" },
+    { id: 2006, name: "Піца Сирна", price: 170, category: "Pizza", partner: "IQ Pizza", description: "Багато сиру моцарела", img: "images/Піца Сирна.jpg" },
+    { id: 2007, name: "Піца Баварська", price: 220, category: "Pizza", partner: "IQ Pizza", description: "Мисливські ковбаски, огірки, гірчиця", img: "images/Піца Баварська.jpg" },
+    { id: 2011, name: "Піца Діабола", price: 230, category: "Pizza", partner: "IQ Pizza", description: "Гостра салямі, чилі, моцарела", img: "images/Піца Діабола.jpg" },
+    { id: 2012, name: "Піца Сирна Курка", price: 215, category: "Pizza", partner: "IQ Pizza", description: "Курка, кукурудза, багато сиру", img: "images/Піца Сирна Курка.jpg" },
+    { id: 2008, name: "Картопля фрі", price: 65, category: "Burger", partner: "IQ Pizza", description: "Хрустка фрі", img: "images/Картопля фрі.jpg" },
+    { id: 2009, name: "Нагетси курячі", price: 110, category: "Burger", partner: "IQ Pizza", description: "Нагетси (9 шт)", img: "images/Нагетси курячі.jpg" },
+    { id: 2010, name: "Курячі крильця", price: 140, category: "Burger", partner: "IQ Pizza", description: "Крильця BBQ (6 шт)", img: "images/Реберця.jpg" },
+    { id: 2013, name: "Сирні кульки", price: 125, category: "Burger", partner: "IQ Pizza", description: "Кульки з моцарелою у фритюрі", img: "images/Сирні кульки.jpg" },
 
-    // --- BURGERS & FASTFOOD (16 Items) ---
-    { id: 201, name: "Бургер з яловичиною", price: 190, category: "Burger", partner: "Baza", description: "Фірмовий бургер з яловичою котлетою, сиром чеддер та соусом BBQ.", img: u('1568901346375-23c9450c58cd') },
-    { id: 202, name: "Чізбургер класичний", price: 160, category: "Burger", partner: "Baza", description: "Класичний чізбургер з яловичою котлетою, сиром, огірком та кетчупом.", img: u('1586190848861-99aa4a171e90') },
-    { id: 203, name: "Бургер з куркою", price: 170, category: "Burger", partner: "Baza", description: "Бургер з курячим стейком на грилі, свіжими овочами та білим соусом.", img: u('1615719413546-198b25453f85') },
-    { id: 204, name: "Дабл Чізбургер", price: 240, category: "Burger", partner: "Baza", description: "Дві соковиті котлети, подвійний сир чеддер.", img: u('1594212691516-4af5c108061a') },
-    { id: 205, name: "Чізбургер ToSim", price: 120, category: "Burger", partner: "ToSim", description: "Соковита котлета, сир чеддер та фірмовий соус.", img: u('1568901346375-23c9450c58cd') },
-    { id: 206, name: "Дабл Біф", price: 180, category: "Burger", partner: "ToSim", description: "Подвійна яловича котлета, хрусткий бекон.", img: u('1594212691516-4af5c108061a') },
-    { id: 207, name: "Чікенбургер", price: 140, category: "Burger", partner: "ToSim", description: "Хрустка курка, салат айсберг, соус тартар.", img: u('1615719413546-198b25453f85') },
-    { id: 208, name: "Картопля фрі", price: 65, category: "Burger", partner: "IQ Pizza", description: "Хрустка картопля фрі. Подається з соусом на вибір.", img: u('1576107232684-1279f390859f') },
-    { id: 209, name: "Батат Фрі", price: 95, category: "Burger", partner: "Baza", description: "Солодка картопля фрі (батат) із сирним соусом.", img: u('1576107232684-1279f390859f') },
-    { id: 210, name: "Картопля по-селянськи", price: 75, category: "Burger", partner: "ToSim", description: "Картопляні дольки зі спеціями та часником.", img: u('1534939561126-855b8675edd7') },
-    { id: 211, name: "Нагетси курячі", price: 110, category: "Burger", partner: "IQ Pizza", description: "Соковиті шматочки курки в хрусткій паніровці (9 шт).", img: u('1562967914-01efa7e87832') },
-    { id: 212, name: "Курячі крильця", price: 140, category: "Burger", partner: "IQ Pizza", description: "Пікантні курячі крильця в соусі BBQ (6 шт).", img: u('1527477396000-e27163b481c2') },
-    { id: 213, name: "Сирні кульки", price: 125, category: "Burger", partner: "IQ Pizza", description: "Хрусткі сирні кульки з моцарелою у фритюрі.", img: u('1534939561126-855b8675edd7') },
-    { id: 214, name: "Цибулеві кільця", price: 95, category: "Burger", partner: "Baza", description: "Хрусткі кільця цибулі, обсмажені у фритюрі.", img: u('1534939561126-855b8675edd7') },
-    { id: 215, name: "Хот-дог класичний", price: 90, category: "Burger", partner: "ToSim", description: "Булочка, молочна сосиска, кетчуп, гірчиця.", img: u('1590947132387-155cc02f3212') },
-    { id: 216, name: "Хот-дог французький", price: 80, category: "Burger", partner: "ToSim", description: "Хрусткий багет з мисливською ковбаскою.", img: u('1590947132387-155cc02f3212') },
+    // --- Osama Sushi ---
+    { id: 3001, name: "Рол Філадельфія", price: 250, category: "Sushi", partner: "Osama Sushi", description: "Лосось, крем-сир", img: "images/Рол Філадельфія.jpg" },
+    { id: 3002, name: "Рол Каліфорнія", price: 220, category: "Sushi", partner: "Osama Sushi", description: "Краб, авокадо, тобіко", img: "images/Рол Каліфорнія.jpg" },
+    { id: 3003, name: "Рол Зелений Дракон", price: 280, category: "Sushi", partner: "Osama Sushi", description: "Вугор, авокадо", img: "images/Рол Зелений Дракон.jpg" },
+    { id: 3004, name: "Макі з лососем", price: 120, category: "Sushi", partner: "Osama Sushi", description: "Традиційний моно-рол", img: "images/Макі з лососем.jpg" },
+    { id: 3009, name: "Сет Самурай", price: 680, category: "Sushi", partner: "Osama Sushi", description: "Каліфорнія, Філадельфія, Макі", img: "images/Сет Самурай.jpg" },
+    { id: 3010, name: "Запечений Рол", price: 270, category: "Sushi", partner: "Osama Sushi", description: "Теплий рол з лососем та сирною шапкою", img: "images/Запечений Рол.jpg" },
+    { id: 3011, name: "Нігірі Сет", price: 320, category: "Sushi", partner: "Osama Sushi", description: "Асорті нігірі з лососем, тунцем, вугром", img: "images/Нігірі Сет.jpg" },
+    { id: 3012, name: "Макі з вугром", price: 160, category: "Sushi", partner: "Osama Sushi", description: "Традиційні макі з вугром та унагі", img: "images/Макі з вугром.jpg" },
 
-    // --- SUSHI (15 Items) ---
-    { id: 301, name: "Рол Філадельфія", price: 250, category: "Sushi", partner: "Osama Sushi", description: "Класичний рол з лососем, крем-сиром Філадельфія та огірком.", img: u('1579871494447-9811cf80d66c') },
-    { id: 302, name: "Рол Каліфорнія", price: 220, category: "Sushi", partner: "Osama Sushi", description: "Рол з м'ясом краба, авокадо, японським майонезом та ікрою тобіко.", img: u('1611143669185-af224c5e3252') },
-    { id: 303, name: "Рол Зелений Дракон", price: 280, category: "Sushi", partner: "Osama Sushi", description: "Рол з вугром, крем-сиром, огірком, вкритий авокадо та соусом унагі.", img: u('1553621042-f6e147245754') },
-    { id: 304, name: "Рол Червоний Дракон", price: 290, category: "Sushi", partner: "Osama Sushi", description: "Рол з вугром, крем-сиром, вкритий свіжим лососем.", img: u('1579871494447-9811cf80d66c') },
-    { id: 305, name: "Рол Золотий Дракон", price: 310, category: "Sushi", partner: "Osama Sushi", description: "Рол з лососем, крем-сиром, вкритий вугром та кунжутом.", img: u('1553621042-f6e147245754') },
-    { id: 306, name: "Макі з лососем", price: 120, category: "Sushi", partner: "Osama Sushi", description: "Традиційний моно-рол з лососем.", img: u('1583623025817-d180a2221d0a') },
-    { id: 307, name: "Макі з тунцем", price: 130, category: "Sushi", partner: "Osama Sushi", description: "Традиційний моно-рол з тунцем.", img: u('1579584425555-c3ce17fd4351') },
-    { id: 308, name: "Макі з огірком", price: 80, category: "Sushi", partner: "Osama Sushi", description: "Традиційний моно-рол зі свіжим огірком.", img: u('1563612116625-3012372fcec4') },
-    { id: 309, name: "Макі з вугром", price: 160, category: "Sushi", partner: "Osama Sushi", description: "Традиційні макі з вугром та соусом унагі.", img: u('1563612116625-3012372fcec4') },
-    { id: 310, name: "Нігірі з лососем", price: 60, category: "Sushi", partner: "Osama Sushi", description: "Грудочка рису, вкрита скибочкою свіжого лосося. (1 шт)", img: u('1558985250-27a406d64cb3') },
-    { id: 311, name: "Гункан з ікрою Тобіко", price: 80, category: "Sushi", partner: "Osama Sushi", description: "Кошик з норі, наповнений рисом та ікрою тобіко. (1 шт)", img: u('1558985250-27a406d64cb3') },
-    { id: 312, name: "Сет Самурай", price: 680, category: "Sushi", partner: "Osama Sushi", description: "Сет: Каліфорнія, Філадельфія, Макі з лососем.", img: u('1617196034738-26c5f7c977ce') },
-    { id: 313, name: "Запечений Рол", price: 270, category: "Sushi", partner: "Osama Sushi", description: "Теплий рол з лососем, сирною шапкою та соусом спайсі.", img: u('1583337130417-3346a1be7dee') },
-    { id: 314, name: "Рол Сирний", price: 240, category: "Sushi", partner: "Osama Sushi", description: "Рол у сирній обгортці з куркою, крем-сиром та огірком.", img: u('1579871494447-9811cf80d66c') },
-    { id: 315, name: "Нігірі Сет", price: 320, category: "Sushi", partner: "Osama Sushi", description: "Асорті нігірі: лосось, тунець, вугор (6 шт).", img: u('1558985250-27a406d64cb3') },
+    // --- ToSim (Grocery & Fastfood) ---
+    { id: 4001, name: "Багет французький", price: 35, category: "Grocery", partner: "ToSim", description: "Хрусткий свіжоспечений багет", img: "images/Багет французький.jpg" },
+    { id: 4002, name: "Круасан", price: 25, category: "Grocery", partner: "ToSim", description: "Класичний круасан", img: "images/Круасан.jpg" },
+    { id: 4003, name: "Салямі", price: 250, category: "Grocery", partner: "ToSim", description: "Салямі х/к", img: "images/Салямі.jpg" },
+    { id: 4004, name: "Шоколад чорний", price: 50, category: "Grocery", partner: "ToSim", description: "Шоколад 72%", img: "images/Шоколад чорний.jpg" },
+    { id: 4005, name: "Сік Сандора 1л", price: 55, category: "Grocery", partner: "ToSim", description: "Апельсиновий сік", img: "images/Сік Сандора 1л.jpg" },
+    { id: 4006, name: "Чізбургер ToSim", price: 120, category: "Burger", partner: "ToSim", description: "Соковита котлета, сир чеддер", img: "images/Чізбургер ToSim.jpg" },
+    { id: 4007, name: "Картопля по-селянськи", price: 75, category: "Burger", partner: "ToSim", description: "Спеції, часник", img: "images/Картопля по-селянськи.jpg" },
+    { id: 4008, name: "Чікенбургер", price: 140, category: "Burger", partner: "ToSim", description: "Хрустка курка, айсберг, соус", img: "images/Чікенбургер.jpg" },
 
-    // --- GROCERY, DINNER, DESSERT (19 Items) ---
-    { id: 401, name: "Хліб білий", price: 25, category: "Grocery", partner: "АТБ", description: "Свіжоспечений пшеничний білий хліб", img: u('1509440159596-0249088772ff') },
-    { id: 402, name: "Молоко 2.5%", price: 42, category: "Grocery", partner: "АТБ", description: "Натуральне коров'яче молоко", img: u('1550583724-b2692b85b150') },
-    { id: 403, name: "Кефір 2.5%", price: 45, category: "Grocery", partner: "АТБ", description: "Корисний кефір", img: u('1528750711928-8772591605e5') },
-    { id: 404, name: "Яйця (10 шт)", price: 65, category: "Grocery", partner: "АТБ", description: "Яйця курячі С0", img: u('1587486913049-53fc88980cfc') },
-    { id: 405, name: "Ковбаса варена", price: 140, category: "Grocery", partner: "АТБ", description: "Лікарська ковбаса", img: u('1550508827-0c7f7bc9e05f') },
-    { id: 406, name: "Салямі", price: 210, category: "Grocery", partner: "АТБ", description: "Копчена салямі", img: u('1621217036365-98ea2e0a29f4') },
-    { id: 407, name: "Сосиски молочні", price: 130, category: "Grocery", partner: "АТБ", description: "Молочні сосиски", img: u('1621217036365-98ea2e0a29f4') },
-    { id: 408, name: "Куряче філе", price: 180, category: "Grocery", partner: "АТБ", description: "Філе охолоджене 1кг", img: u('1604503468506-a8da13d82791') },
-    { id: 409, name: "Картопля", price: 20, category: "Grocery", partner: "АТБ", description: "Картопля 1кг", img: u('1518977676601-b53f82aba655') },
-    { id: 410, name: "Помідори", price: 80, category: "Grocery", partner: "АТБ", description: "Томати червоні 1кг", img: u('1592924357228-91a4daadcfea') },
-    { id: 411, name: "Банани", price: 60, category: "Grocery", partner: "АТБ", description: "Еквадор 1кг", img: u('1571501679680-de32f1e7aad4') },
-    { id: 412, name: "Кока-Кола 1.5л", price: 45, category: "Grocery", partner: "АТБ", description: "Напій Coca-Cola", img: u('1622483767028-3f66f32aef97') },
-    { id: 413, name: "Сік Апельсиновий 1л", price: 55, category: "Grocery", partner: "ToSim", description: "Натуральний апельсиновий сік", img: u('1600271886742-f049cd451bba') },
-    { id: 414, name: "Багет французький", price: 35, category: "Grocery", partner: "ToSim", description: "Хрусткий свіжоспечений багет", img: u('1509440159596-0249088772ff') },
-    { id: 415, name: "Круасан", price: 25, category: "Grocery", partner: "ToSim", description: "Класичний круасан", img: u('1555507036-ab1f40ce88cb') },
-    { id: 416, name: "Шоколад чорний", price: 50, category: "Grocery", partner: "ToSim", description: "Шоколад 72%", img: u('1548907040-4c42bf7d863c') },
-    { id: 417, name: "Тірамісу", price: 160, category: "Dessert", partner: "Фелічіта", description: "Класичний італійський десерт з маскарпоне", img: u('1571115177098-24ec42ed204d') },
-    { id: 418, name: "Панна Котта", price: 140, category: "Dessert", partner: "Фелічіта", description: "Вершковий десерт з ягідним соусом", img: u('1533134242443-d4fd215305ad') },
-    { id: 419, name: "Чізкейк Нью-Йорк", price: 150, category: "Dessert", partner: "Фелічіта", description: "Класичний сирний пиріг", img: u('1533134242443-d4fd215305ad') },
+    // --- Baza (Burger & Dinner) ---
+    { id: 5001, name: "Бургер з яловичиною", price: 190, category: "Burger", partner: "Baza", description: "Фірмовий бургер", img: "images/Бургер з яловичиною.jpg" },
+    { id: 5002, name: "Бургер з куркою", price: 170, category: "Burger", partner: "Baza", description: "Куряча котлета, білий соус", img: "images/Бургер з куркою.jpg" },
+    { id: 5007, name: "Дабл Чізбургер", price: 240, category: "Burger", partner: "Baza", description: "Дві котлети, подвійний чеддер", img: "images/Дабл Чізбургер.jpg" },
+    { id: 5008, name: "Батат Фрі", price: 95, category: "Burger", partner: "Baza", description: "Солодка картопля фрі з соусом", img: "images/Батат Фрі.jpg" },
+    { id: 5003, name: "Стейк свинячий", price: 280, category: "Dinner", partner: "Baza", description: "Стейк на грилі", img: "images/Стейк свинячий.jpg" },
+    { id: 5004, name: "Салат Цезар", price: 210, category: "Dinner", partner: "Baza", description: "Цезар з куркою", img: "images/Салат Цезар.jpg" },
 
-    // --- PROMOS (3 Items) ---
-    { id: 901, name: "Комбо Ситний", price: 290, oldPrice: 420, category: "Burger", partner: "ToSim", isPromo: true, description: "Дабл Біф, Фрі, Кола", img: u('1568901346375-23c9450c58cd') },
-    { id: 902, name: "М'ясний Бум", price: 890, oldPrice: 1250, category: "Dinner", partner: "Baza", isPromo: true, description: "Стейки та реберця", img: u('1544025162-d76694265947') },
-    { id: 903, name: "Кілограм Ролів", price: 850, oldPrice: 1100, category: "Sushi", partner: "Osama Sushi", isPromo: true, description: "Великий сет ролів", img: u('1617196034738-26c5f7c977ce') }
+    // --- Фелічіта (Pizza, Dinner, Dessert) ---
+    { id: 6001, name: "Піца Маргарита", price: 210, category: "Pizza", partner: "Фелічіта", description: "Італійська піца", img: "images/Піца Маргарита.jpg" },
+    { id: 6002, name: "Піца Прошуто", price: 310, category: "Pizza", partner: "Фелічіта", description: "Італійське прошуто, рукола, пармезан", img: "images/Піца Прошуто.jpg" },
+    { id: 6004, name: "Піца 4 Сири", price: 260, category: "Pizza", partner: "Фелічіта", description: "Горгонзола, пармезан, дорблю", img: "images/Піца 4 Сирии.jpg" },
+    { id: 6007, name: "Піца 4 М'яса", price: 290, category: "Pizza", partner: "Фелічіта", description: "Шинка, салямі, бекон, мисливські ковбаски", img: "images/Піца 4 М'яса.jpg" },
+    { id: 6003, name: "Паста Болоньєзе", price: 210, category: "Dinner", partner: "Фелічіта", description: "Паста з м'ясним рагу", img: "images/Паста Болоньєзе.jpg" },
+    { id: 6005, name: "Тірамісу", price: 160, category: "Dessert", partner: "Фелічіта", description: "Класичний десерт", img: "images/Тірамісу.jpg" },
+
+    // --- Promos (Акційні сети) ---
+    { id: 901, name: "Комбо Ситний", price: 290, oldPrice: 420, category: "Burger", partner: "ToSim", isPromo: true, description: "Дабл Біф, Фрі, Кола", img: "images/Комбо Ситний.jpg" },
+    { id: 904, name: "Сет для двох", price: 450, oldPrice: 600, category: "Burger", partner: "ToSim", isPromo: true, description: "2 Чізбургери, 2 Фрі, 2 Коли, Нагетси", img: "images/Сет для двох.jpg" },
+    { id: 905, name: "Мега Паті Сет", price: 790, oldPrice: 1100, category: "Burger", partner: "ToSim", isPromo: true, description: "4 Бургери, Відро фрі, 20 нагетсів", img: "images/Мега Паті Сет.jpg" },
+    { id: 902, name: "М'ясний Бум", price: 890, oldPrice: 1250, category: "Dinner", partner: "Baza", isPromo: true, description: "Стейки, реберця, овочі гриль", img: "images/М'ясний Бум.jpg" },
+    { id: 906, name: "Пивний Безліміт", price: 550, oldPrice: 750, category: "Dinner", partner: "Baza", isPromo: true, description: "Крильця BBQ, сирні палички, кільця цибулі", img: "images/Пивний Безліміт.jpg" },
+    { id: 907, name: "Сет Гриль MAX", price: 1200, oldPrice: 1600, category: "Dinner", partner: "Baza", isPromo: true, description: "Шашлик, ковбаски, ребра, печена картопля", img: "images/Сет Гриль MAX.jpg" },
+    { id: 903, name: "Кілограм Ролів", price: 850, oldPrice: 1100, category: "Sushi", partner: "Osama Sushi", isPromo: true, description: "Великий сет ролів (Філадельфія, Каліфорнія, Макі)", img: "images/Кілограм Ролів.jpg" },
+    { id: 908, name: "Сет Драконів", price: 950, oldPrice: 1300, category: "Sushi", partner: "Osama Sushi", isPromo: true, description: "Зелений, Червоний та Золотий дракони", img: "images/Сет Драконів.jpg" },
+    { id: 909, name: "Романтік Сет", price: 650, oldPrice: 850, category: "Sushi", partner: "Osama Sushi", isPromo: true, description: "Філадельфія з лососем, Нігірі, 2 келихи вина", img: "images/Романтік Сет.jpg" }
 ];
 
+// Оновлені точні адреси згідно скріншотів
 const partnerLocations = {
     "Фелічіта": [{ addr: "бул. Шевченка, 8", x: 0, y: 0.1 }],
     "IQ Pizza": [
@@ -110,7 +111,7 @@ let userProfile = { name: '', phone: '', street: '', house: '', apt: '' };
 let orderHistory = [];
 let currentProduct = null;
 let currentBasePrice = 0;
-let currentModalQty = 1;
+let currentModalQty = 1; // Нова змінна для лічильника кількості
 let deliveryFee = 50; 
 let discountApplied = 0;
 let currentSort = 'default';
@@ -121,6 +122,7 @@ const cartSidebar = document.getElementById('cart-sidebar');
 const header = document.getElementById('main-header');
 const themeToggleBtn = document.getElementById('theme-toggle');
 
+/* STREAMING_CHUNK:Setting up initialization and event listeners... */
 // --- 4. INIT & LOCAL STORAGE ---
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -184,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+/* STREAMING_CHUNK:Defining UI helper functions and modals... */
 function initWelcomeModal() {
     setTimeout(() => { openModal('welcome-modal'); }, 800);
 }
@@ -215,13 +218,19 @@ function saveStateToStorage() {
 
 function loadStateFromStorage() {
     const savedCart = localStorage.getItem('novo_cart');
-    if (savedCart) cart = JSON.parse(savedCart);
+    if (savedCart) {
+        try { cart = JSON.parse(savedCart); } catch(e){}
+    }
     
     const savedHistory = localStorage.getItem('novo_history');
-    if (savedHistory) orderHistory = JSON.parse(savedHistory);
+    if (savedHistory) {
+        try { orderHistory = JSON.parse(savedHistory); } catch(e){}
+    }
     
     const savedProfile = localStorage.getItem('novo_profile');
-    if (savedProfile) userProfile = JSON.parse(savedProfile);
+    if (savedProfile) {
+        try { userProfile = JSON.parse(savedProfile); } catch(e){}
+    }
     
     currentUser = localStorage.getItem('novo_user') || null;
     if (currentUser) {
@@ -247,6 +256,7 @@ function showToast(message, isError = false) {
     }, 3000);
 }
 
+/* STREAMING_CHUNK:Implementing search, filtering and distances logic... */
 function initDistanceSearch() {
     const searchBtn = document.getElementById('hero-search-btn');
     searchBtn.addEventListener('click', calculateDistances);
@@ -414,6 +424,7 @@ function filterByPartner(partnerName) {
     document.getElementById('menu').scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
+/* STREAMING_CHUNK:Implementing menu rendering and product modal logic... */
 function renderMenu(items) {
     const container = document.getElementById('menu-grid-container');
     container.innerHTML = '';
@@ -581,7 +592,7 @@ function openProductModal(id) {
                 <div class="mod-title">Розмір</div>
                 <label class="mod-label"><div class="flex items-center"><input type="radio" name="mod-size" value="0" data-name="Стандарт (30 см)" checked onchange="calcPrice()"> Стандарт (30 см)</div></label>
                 <label class="mod-label"><div class="flex items-center"><input type="radio" name="mod-size" value="50" data-name="XL 40 см" onchange="calcPrice()"> XL 40 см</div> <span class="mod-price">+50 ₴</span></label>
-                </div>
+            </div>
             <div class="mod-group">
                 <div class="mod-title">Додатки</div>
                 <label class="mod-label"><div class="flex items-center"><input type="checkbox" class="mod-cb" value="40" data-name="Сирний бортик" onchange="calcPrice()"> Сирний бортик</div> <span class="mod-price">+40 ₴</span></label>
@@ -681,6 +692,7 @@ function addToCart() {
     showToast(`${currentProduct.name} додано в кошик`);
 }
 
+/* STREAMING_CHUNK:Implementing cart and checkout logic... */
 // --- 11. CART UI & PROMO ---
 function openCart() { overlay.style.display = 'block'; setTimeout(()=>overlay.classList.add('show'),10); cartSidebar.classList.add('open'); }
 function closeCart() { overlay.classList.remove('show'); setTimeout(()=>overlay.style.display='none',300); cartSidebar.classList.remove('open'); }
@@ -850,6 +862,7 @@ function openCheckout(finalSubtotal) {
     openModal('checkout-modal');
 }
 
+/* STREAMING_CHUNK:Implementing tracking, auth and profile logic... */
 // --- 13. TRACKING & ORDER FINALIZATION ---
 let trackingTimeouts = [];
 let activeTrackingOrder = null;
@@ -859,10 +872,8 @@ function startTracking(orderObj) {
     activeTrackingOrder = orderObj;
     currentTrackingStep = 1;
     
-    // Показуємо плаваючу кнопку відстеження
     document.getElementById('active-tracking-btn').classList.add('visible');
     
-    // Очищуємо попередні таймери, якщо є
     trackingTimeouts.forEach(clearTimeout);
     trackingTimeouts = [];
 
@@ -884,11 +895,9 @@ function startTracking(orderObj) {
         updateTrackingModalUI();
         showToast(`Замовлення #${orderObj.id} успішно доставлено!`);
         
-        // Зберігаємо замовлення в історію
         orderHistory.unshift(orderObj);
         saveStateToStorage();
 
-        // Ховаємо кнопку відстеження через 10 секунд після доставки
         setTimeout(() => {
             document.getElementById('active-tracking-btn').classList.remove('visible');
             activeTrackingOrder = null;
@@ -905,10 +914,9 @@ function updateTrackingModalUI() {
     document.getElementById('track-order-id').innerText = activeTrackingOrder.id;
     const statusText = document.getElementById('tracking-status');
     
-    // Оновлюємо стан кроків
     for (let i = 1; i <= 4; i++) {
         const step = document.getElementById(`step-${i}`);
-        step.className = 'track-step'; // Скидаємо класи
+        step.className = 'track-step';
         if (i < currentTrackingStep) {
             step.classList.add('done');
         } else if (i === currentTrackingStep) {
@@ -916,9 +924,8 @@ function updateTrackingModalUI() {
         }
     }
 
-    statusText.style.color = "var(--text-main)"; // Скидаємо колір
+    statusText.style.color = "var(--text-main)";
 
-    // Оновлюємо текст статусу
     if (currentTrackingStep === 1) {
         statusText.innerText = "Заклад прийняв замовлення";
     } else if (currentTrackingStep === 2) {
@@ -938,7 +945,7 @@ function openTracking() {
     }
 }
 
-// --- 14. AUTH & PROFILE ---
+// --- 14. AUTH & PROFILE WITH REFERRAL LOGIC ---
 function handleAuthClick() {
     if(currentUser) openProfile();
     else openModal('auth-modal');
@@ -949,10 +956,12 @@ function initAuth() {
     const btnReg = document.getElementById('tab-register');
     const nameInput = document.getElementById('auth-name');
     const submitBtn = document.getElementById('auth-submit-btn');
+    const refWrap = document.getElementById('referral-wrap');
 
     btnLogin.addEventListener('click', () => {
         btnLogin.classList.add('active'); btnReg.classList.remove('active');
         nameInput.classList.add('hidden');
+        if (refWrap) refWrap.classList.add('hidden'); 
         submitBtn.innerText = "Увійти";
         document.getElementById('auth-title').innerText = "Вхід";
     });
@@ -960,6 +969,7 @@ function initAuth() {
     btnReg.addEventListener('click', () => {
         btnReg.classList.add('active'); btnLogin.classList.remove('active');
         nameInput.classList.remove('hidden');
+        if (refWrap) refWrap.classList.remove('hidden'); 
         submitBtn.innerText = "Зареєструватися";
         document.getElementById('auth-title').innerText = "Реєстрація";
     });
@@ -969,11 +979,21 @@ function initAuth() {
         currentUser = document.getElementById('auth-name').value || "Користувач";
         userProfile.name = currentUser;
         userProfile.phone = document.getElementById('auth-phone').value;
+        
+        const isReg = btnReg.classList.contains('active');
+        const refInput = document.getElementById('auth-ref-code');
+        const refCode = refInput ? refInput.value.trim() : '';
+        let extraToast = "";
+        
+        if (isReg && refCode.length > 0) {
+            extraToast = "<br>🎁 Реферальний код застосовано! Ви отримали безкоштовне замовлення.";
+        }
+
         saveStateToStorage();
         
         document.getElementById('auth-btn-main').innerText = `👤 Профіль`;
         closeModal('auth-modal');
-        showToast(`Вітаємо, ${currentUser}! Ви успішно увійшли.`);
+        showToast(`Вітаємо, ${currentUser}! Ви успішно увійшли.${extraToast}`);
     });
 }
 
@@ -1060,6 +1080,7 @@ function logout() {
     showToast('Ви вийшли з акаунта');
 }
 
+/* STREAMING_CHUNK:Implementing FAQ and main tabs initialization... */
 // --- 15. FAQ & MAIN TABS LOGIC ---
 function initMainTabs() {
     const topTabs = document.querySelectorAll('.faq-top-tab');
