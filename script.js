@@ -1,4 +1,3 @@
-/* STREAMING_CHUNK:Initializing mock database and global state variables... */
 // --- 1. MOCK DATABASE AND LOCATIONS ---
 
 // МАСИВ З УСІМА ТОВАРАМИ
@@ -81,6 +80,18 @@ const products = [
     { id: 909, name: "Романтік Сет", price: 650, oldPrice: 850, category: "Sushi", partner: "Osama Sushi", isPromo: true, description: "Філадельфія з лососем, Нігірі, 2 келихи вина", img: "images/Романтік Сет.jpg" }
 ];
 
+function toggleMobileMenu() {
+    const drawer = document.getElementById('mobile-menu-drawer');
+    const overlay = document.getElementById('mobile-menu-overlay');
+    if (drawer.classList.contains('open')) {
+        drawer.classList.remove('open');
+        overlay.classList.remove('show');
+    } else {
+        drawer.classList.add('open');
+        overlay.classList.add('show');
+    }
+}
+
 // Оновлені точні адреси згідно скріншотів
 const partnerLocations = {
     "Фелічіта": [{ addr: "бул. Шевченка, 8", x: 0, y: 0.1 }],
@@ -122,7 +133,6 @@ const cartSidebar = document.getElementById('cart-sidebar');
 const header = document.getElementById('main-header');
 const themeToggleBtn = document.getElementById('theme-toggle');
 
-/* STREAMING_CHUNK:Setting up initialization and event listeners... */
 // --- 4. INIT & LOCAL STORAGE ---
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -166,6 +176,13 @@ document.addEventListener('DOMContentLoaded', () => {
             floatingCart.classList.remove('visible');
         }
         
+        const scrollTopBtn = document.getElementById('scroll-top-btn');
+        if(window.scrollY > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
+        
         const sections = document.querySelectorAll('section[id], div[id="home"]');
         const navLinks = document.querySelectorAll('.nav-links a');
         let currentSectionId = '';
@@ -186,7 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-/* STREAMING_CHUNK:Defining UI helper functions and modals... */
 function initWelcomeModal() {
     setTimeout(() => { openModal('welcome-modal'); }, 800);
 }
@@ -234,7 +250,8 @@ function loadStateFromStorage() {
     
     currentUser = localStorage.getItem('novo_user') || null;
     if (currentUser) {
-        document.getElementById('auth-btn-main').innerText = `👤 Профіль`;
+        const btnText = document.querySelector('#auth-btn-main span:last-child');
+        if(btnText) btnText.innerText = 'Профіль';
     }
 
     if(orderHistory.length > 0) {
@@ -256,7 +273,6 @@ function showToast(message, isError = false) {
     }, 3000);
 }
 
-/* STREAMING_CHUNK:Implementing search, filtering and distances logic... */
 function initDistanceSearch() {
     const searchBtn = document.getElementById('hero-search-btn');
     searchBtn.addEventListener('click', calculateDistances);
@@ -424,7 +440,6 @@ function filterByPartner(partnerName) {
     document.getElementById('menu').scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
-/* STREAMING_CHUNK:Implementing menu rendering and product modal logic... */
 function renderMenu(items) {
     const container = document.getElementById('menu-grid-container');
     container.innerHTML = '';
@@ -692,7 +707,6 @@ function addToCart() {
     showToast(`${currentProduct.name} додано в кошик`);
 }
 
-/* STREAMING_CHUNK:Implementing cart and checkout logic... */
 // --- 11. CART UI & PROMO ---
 function openCart() { overlay.style.display = 'block'; setTimeout(()=>overlay.classList.add('show'),10); cartSidebar.classList.add('open'); }
 function closeCart() { overlay.classList.remove('show'); setTimeout(()=>overlay.style.display='none',300); cartSidebar.classList.remove('open'); }
@@ -862,7 +876,6 @@ function openCheckout(finalSubtotal) {
     openModal('checkout-modal');
 }
 
-/* STREAMING_CHUNK:Implementing tracking, auth and profile logic... */
 // --- 13. TRACKING & ORDER FINALIZATION ---
 let trackingTimeouts = [];
 let activeTrackingOrder = null;
@@ -991,7 +1004,9 @@ function initAuth() {
 
         saveStateToStorage();
         
-        document.getElementById('auth-btn-main').innerText = `👤 Профіль`;
+        const btnText = document.querySelector('#auth-btn-main span:last-child');
+        if(btnText) btnText.innerText = 'Профіль';
+        
         closeModal('auth-modal');
         showToast(`Вітаємо, ${currentUser}! Ви успішно увійшли.${extraToast}`);
     });
@@ -1075,12 +1090,14 @@ function logout() {
     currentUser = null;
     userProfile = { name: '', phone: '', street: '', house: '', apt: '' }; 
     saveStateToStorage();
-    document.getElementById('auth-btn-main').innerText = "👤 Увійти / Реєстрація";
+    
+    const btnText = document.querySelector('#auth-btn-main span:last-child');
+    if(btnText) btnText.innerText = 'Увійти / Реєстрація';
+    
     closeModal('profile-modal');
     showToast('Ви вийшли з акаунта');
 }
 
-/* STREAMING_CHUNK:Implementing FAQ and main tabs initialization... */
 // --- 15. FAQ & MAIN TABS LOGIC ---
 function initMainTabs() {
     const topTabs = document.querySelectorAll('.faq-top-tab');
